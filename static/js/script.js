@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultImage = document.getElementById('result-image');
     const downloadLink = document.getElementById('download-link');
     const warningText = document.getElementById('warning-text');
+    const resolutionSelect = document.getElementById('resolution');
+    const customResDiv = document.getElementById('custom-res');
+    const widthInput = document.getElementById('width');
+    const heightInput = document.getElementById('height');
+
+    resolutionSelect.addEventListener('change', () => {
+        customResDiv.style.display = resolutionSelect.value === 'custom' ? 'block' : 'none';
+    });
 
     uploadButton.addEventListener('click', () => fileInput.click());
 
@@ -30,6 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function processFile(file) {
         const formData = new FormData();
         formData.append('file', file);
+        formData.append('conversion_type', document.getElementById('conversion-type').value);
+        const resolution = resolutionSelect.value;
+        formData.append('resolution', resolution);
+        if (resolution === 'custom') {
+            formData.append('width', widthInput.value);
+            formData.append('height', heightInput.value);
+        }
 
         uploadButton.textContent = 'Processing...';
         uploadButton.disabled = true;
@@ -43,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.error) {
                 alert(data.error);
             } else {
-                resultImage.src = data.output_url;
-                downloadLink.href = data.output_url;
+                resultImage.src = data.output_url;  // Preview gambar
+                downloadLink.href = data.download_url;  // URL untuk unduhan
                 resultArea.style.display = 'block';
                 warningText.textContent = data.warning || '';
             }
