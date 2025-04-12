@@ -3,17 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghibli Magic - Transform Your Images to Ghibli Style</title>
+    <title>Artify Magic - Transform Your Images with Stunning Effects</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya tambahan untuk dropdown dan tombol agar selaras dengan desain situs */
+        .upload-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .upload-box:hover {
+            transform: translateY(-5px);
+        }
+        .conversion-options, .resolution-options {
+            margin-bottom: 20px;
+        }
+        .conversion-options label, .resolution-options label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .conversion-options select, .resolution-options select {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: #333;
+            background-color: #fefefe;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6f61' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .conversion-options select:focus, .resolution-options select:focus {
+            border-color: #ff6f61;
+            box-shadow: 0 0 10px rgba(255, 111, 97, 0.2);
+            outline: none;
+        }
+        .custom-res {
+            display: none;
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .custom-res div {
+            flex: 1;
+            min-width: 140px;
+        }
+        .custom-res label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .custom-res input {
+            width: 100%;
+            padding: 10px 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #333;
+            background-color: #fefefe;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s ease;
+        }
+        .custom-res input:focus {
+            border-color: #ff6f61;
+            box-shadow: 0 0 8px rgba(255, 111, 97, 0.2);
+            outline: none;
+        }
+        .download-button {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+        }
+        .download-button:hover {
+            background-color: #e55a50;
+            box-shadow: 0 6px 16px rgba(255, 111, 97, 0.4);
+            transform: translateY(-3px);
+        }
+        .download-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(255, 111, 97, 0.2);
+        }
+        .result-area {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <img src="/static/images/logo.png" alt="Ghibli Magic Logo">
-                <h1>Ghibli Magic</h1>
+                <img src="/static/images/logo.png" alt="Artify Magic Logo">
+                <h1>Artify Magic</h1>
             </div>
             <nav class="nav-links">
                 <a href="#">Home</a>
@@ -28,8 +140,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Transform Your Images to Ghibli Style</h1>
-            <p>Experience the magic of Studio Ghibli's iconic art style with our AI-powered image transformation tool.</p>
+            <h1>Unleash Your Creativity with Artistic Image Effects</h1>
+            <p>Transform your photos into stunning artworks with styles like Ghibli, watercolor, cartoon, and more using our AI-powered tool.</p>
             <a href="#upload" class="cta-button">Try it Now</a>
         </div>
     </section>
@@ -38,24 +150,24 @@
     <section class="features">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose Ghibli Magic</h2>
-                <p>Our advanced AI technology brings the charm of Studio Ghibli to your personal photos</p>
+                <h2>Why Choose Artify Magic</h2>
+                <p>Explore a variety of artistic effects to bring your photos to life with cutting-edge technology.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3>Authentic Ghibli Style</h3>
-                    <p>Trained on thousands of Ghibli frames for genuine aesthetics</p>
+                    <div class="feature-icon">🎨</div>
+                    <h3>Diverse Art Styles</h3>
+                    <p>Choose from Ghibli, watercolor, cartoon, sketch, and more for unique transformations.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>Fast Processing</h3>
-                    <p>Transformed images in seconds with optimized algorithms</p>
+                    <h3>Instant Results</h3>
+                    <p>Get your transformed images in seconds with optimized algorithms.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Style Customization</h3>
-                    <p>Choose from various Ghibli film styles</p>
+                    <div class="feature-icon">📏</div>
+                    <h3>Custom Resolutions</h3>
+                    <p>Save your artwork in any size, from HD to custom dimensions.</p>
                 </div>
             </div>
         </div>
@@ -65,30 +177,30 @@
     <section class="transform-demo">
         <div class="container">
             <div class="section-title">
-                <h2>See the Magic in Action</h2>
-                <p>Witness the stunning transformation from regular photos to Ghibli-style artwork</p>
+                <h2>Experience the Transformation</h2>
+                <p>Watch your photos turn into breathtaking artworks with a single click.</p>
             </div>
             <div class="transform-container">
                 <div class="transform-steps">
                     <div class="step">
                         <div class="step-number">1</div>
                         <h3>Upload Photo</h3>
-                        <p>Select any photo</p>
+                        <p>Pick any image from your device.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
-                        <h3>Process</h3>
-                        <p>AI works its magic</p>
+                        <h3>Choose Style</h3>
+                        <p>Select your favorite artistic effect.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
                         <h3>Transform</h3>
-                        <p>See the Ghibli style</p>
+                        <p>Let our AI work its magic.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">4</div>
                         <h3>Download</h3>
-                        <p>Save your artwork</p>
+                        <p>Save your masterpiece in any resolution.</p>
                     </div>
                 </div>
                 <div class="image-comparison">
@@ -97,8 +209,8 @@
                         <h3>Original Image</h3>
                     </div>
                     <div class="image-card">
-                        <img src="/static/images/after.jpg" alt="Transformed Ghibli Image">
-                        <h3>Ghibli Style Image</h3>
+                        <img src="/static/images/after.jpg" alt="Transformed Image">
+                        <h3>Artistic Image</h3>
                     </div>
                 </div>
             </div>
@@ -109,11 +221,11 @@
     <section class="upload-section" id="upload">
         <div class="container">
             <div class="upload-container">
-                <h2>Transform Your Own Image Now</h2>
-                <p>Choose a style and experience the magic on your photos</p>
+                <h2>Create Your Own Masterpiece</h2>
+                <p>Upload your photo, pick a style, and download your artwork in your desired resolution.</p>
                 <div class="upload-box">
-                    <div class="conversion-options" style="margin-bottom: 20px;">
-                        <label for="conversion-type">Conversion Style:</label>
+                    <div class="conversion-options">
+                        <label for="conversion-type">Choose Your Style</label>
                         <select id="conversion-type" name="conversion-type">
                             <option value="ghibli">Ghibli Style</option>
                             <option value="grayscale">Grayscale</option>
@@ -130,32 +242,36 @@
                     <div class="upload-area" id="upload-area">
                         <div class="upload-icon">📁</div>
                         <div class="upload-text">
-                            <h3>Drop your image here</h3>
+                            <h3>Drop Your Image Here</h3>
                             <p>or browse from your device</p>
                         </div>
                         <input type="file" class="file-input" id="file-input" accept="image/*">
                         <button class="upload-button" id="upload-button">Choose File</button>
                     </div>
-                    <div id="result-area" style="display: none; margin-top: 20px;">
-                        <h3>Result</h3>
-                        <img id="result-image" style="max-width: 100%; border-radius: 10px;" alt="Transformed Image">
-                        <div class="resolution-options" style="margin-top: 10px;">
-                            <label for="resolution">Save Resolution:</label>
+                    <div id="result-area" class="result-area" style="display: none;">
+                        <h3>Your Artwork</h3>
+                        <img id="result-image" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" alt="Transformed Image">
+                        <div class="resolution-options">
+                            <label for="resolution">Choose Resolution</label>
                             <select id="resolution" name="resolution">
                                 <option value="original">Original Size</option>
                                 <option value="720p">HD (1280x720)</option>
                                 <option value="1080p">Full HD (1920x1080)</option>
-                                <option value="custom">Custom</option>
+                                <option value="custom">Custom Size</option>
                             </select>
-                            <div id="custom-res" style="display: none; margin-top: 10px;">
-                                <label for="width">Width:</label>
-                                <input type="number" id="width" min="1" value="800">
-                                <label for="height">Height:</label>
-                                <input type="number" id="height" min="1" value="600">
+                            <div id="custom-res" class="custom-res">
+                                <div>
+                                    <label for="width">Width (px)</label>
+                                    <input type="number" id="width" min="1" value="800">
+                                </div>
+                                <div>
+                                    <label for="height">Height (px)</label>
+                                    <input type="number" id="height" min="1" value="600">
+                                </div>
                             </div>
                         </div>
-                        <a href="#" id="download-link" class="upload-button" style="margin-top: 20px;">Download</a>
-                        <p id="warning-text" style="color: #666;"></p>
+                        <a href="#" id="download-link" class="download-button">Download Artwork</a>
+                        <p id="warning-text" style="color: #666; margin-top: 10px;"></p>
                     </div>
                 </div>
             </div>
@@ -166,8 +282,8 @@
     <section class="gallery">
         <div class="container">
             <div class="section-title">
-                <h2>Transformation Gallery</h2>
-                <p>Browse through our collection of stunning transformations</p>
+                <h2>Artistic Gallery</h2>
+                <p>Explore a collection of breathtaking transformations in various styles.</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item"><img src="/static/images/gallery1.jpg" alt="Gallery Image 1"></div>
@@ -187,7 +303,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Ghibli Magic</h3>
+                    <h3>Artify Magic</h3>
                     <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Our Team</a></li>
@@ -198,9 +314,9 @@
                 <div class="footer-column">
                     <h3>Features</h3>
                     <ul>
-                        <li><a href="#">Image Transformation</a></li>
+                        <li><a href="#">Artistic Effects</a></li>
                         <li><a href="#">Style Options</a></li>
-                        <li><a href="#">Batch Processing</a></li>
+                        <li><a href="#">Custom Resolutions</a></li>
                         <li><a href="#">API Access</a></li>
                     </ul>
                 </div>
@@ -224,7 +340,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2025 Ghibli Magic. All rights reserved.</p>
+                <p>© 2025 Artify Magic. All rights reserved.</p>
             </div>
         </div>
     </footer>
